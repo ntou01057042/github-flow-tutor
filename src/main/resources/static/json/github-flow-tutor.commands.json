@@ -1,0 +1,310 @@
+[{
+  "_id": {
+    "$oid": "65879222a2ff881550ab7d47"
+  },
+  "syntax": "\ncommit id:\"Initial commit\"",
+  "timestamp": {
+    "$numberLong": "1703383586293"
+  },
+  "parentTimestamp": 0,
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "6587922ba2ff881550ab7d49"
+  },
+  "syntax": "\ncheckout main\nbranch a1",
+  "timestamp": {
+    "$numberLong": "1703383594140"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383586293"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "6587922ba2ff881550ab7d4a"
+  },
+  "syntax": "\ncheckout a1\ncommit",
+  "timestamp": {
+    "$numberLong": "1703383594611"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383594140"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "6587922ba2ff881550ab7d4b"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383595476"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383594611"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879231a2ff881550ab7d4d"
+  },
+  "syntax": "\ncheckout main\nbranch b1",
+  "timestamp": {
+    "$numberLong": "1703383597878"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383586293"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879231a2ff881550ab7d4e"
+  },
+  "syntax": "\ncheckout b1\ncommit",
+  "timestamp": {
+    "$numberLong": "1703383599125"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383597878"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879231a2ff881550ab7d4f"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383601368"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383599125"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879241a2ff881550ab7d51"
+  },
+  "syntax": "\ncheckout a1\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383613267"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383594611"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879241a2ff881550ab7d52"
+  },
+  "syntax": "\ncheckout main\nmerge a1",
+  "timestamp": {
+    "$numberLong": "1703383615415"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383586293"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879241a2ff881550ab7d53"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383617827"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383615415"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879251a2ff881550ab7d54"
+  },
+  "syntax": "\ncheckout b1\nmerge main",
+  "timestamp": {
+    "$numberLong": "1703383632214"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383599125"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879251a2ff881550ab7d55"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383633644"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383632214"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879259a2ff881550ab7d56"
+  },
+  "syntax": "\ncheckout main\nbranch a2",
+  "timestamp": {
+    "$numberLong": "1703383638586"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383615415"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879259a2ff881550ab7d57"
+  },
+  "syntax": "\ncheckout a2\ncommit",
+  "timestamp": {
+    "$numberLong": "1703383639833"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383638586"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879259a2ff881550ab7d58"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383641823"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383639833"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879275a2ff881550ab7d5a"
+  },
+  "syntax": "\ncheckout main\nmerge b1",
+  "timestamp": {
+    "$numberLong": "1703383667911"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383615415"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879275a2ff881550ab7d5b"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383669952"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383667911"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879286a2ff881550ab7d5c"
+  },
+  "syntax": "\ncheckout a2\ncommit",
+  "timestamp": {
+    "$numberLong": "1703383679123"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383639833"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879286a2ff881550ab7d5d"
+  },
+  "syntax": "\ncheckout a2\ncommit",
+  "timestamp": {
+    "$numberLong": "1703383680722"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383679123"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879286a2ff881550ab7d5e"
+  },
+  "syntax": "\ncheckout a2\ncommit",
+  "timestamp": {
+    "$numberLong": "1703383681850"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383680722"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879286a2ff881550ab7d5f"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383686716"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383681850"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879295a2ff881550ab7d60"
+  },
+  "syntax": "\ncheckout a2\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383695048"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383681850"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879295a2ff881550ab7d61"
+  },
+  "syntax": "\ncheckout main\nmerge a2",
+  "timestamp": {
+    "$numberLong": "1703383697439"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383667911"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+},
+{
+  "_id": {
+    "$oid": "65879295a2ff881550ab7d62"
+  },
+  "syntax": "\ncheckout main",
+  "timestamp": {
+    "$numberLong": "1703383701571"
+  },
+  "parentTimestamp": {
+    "$numberLong": "1703383697439"
+  },
+  "_class": "org.example.githubflowtutor.command.Command"
+}]

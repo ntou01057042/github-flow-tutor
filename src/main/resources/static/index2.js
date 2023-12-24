@@ -68,11 +68,9 @@ function dfs(data, mode) {
     console.log('graph:', graph);
 
     // new
-    // const start = [graph.get(0)[0]];
     const candidate = [];
     for (const command of data) {
         if (command.syntax.includes('checkout main\nmerge')) {
-            // start.push(command.timestamp);
             candidate.push(command.timestamp);
         }
     }
@@ -119,41 +117,6 @@ function dfs(data, mode) {
             }
         }
     }
-
-    // const start = graph.get(0)[0];
-    // const stack = [start];
-    // const visited = new Set();
-    // const again = new Set();
-    // while (visited.size < commandMap.size) {
-    //     while (stack.length) {
-    //         const command = stack.pop();
-    //         if (!visited.has(command)) {
-    //             if (commandMap.get(command).syntax.includes('merge')) {
-    //                 if (!commandMap.get(command).syntax.includes('checkout main\nmerge')) {
-    //                     if (!again.has(command)) {
-    //                         stack.unshift(command);
-    //                         again.add(command);
-    //                         continue;
-    //                     }
-    //                 }
-    //             }
-    //             visited.add(command);
-    //             console.log('dfs visiting:', commandMap.get(command));
-    //             if (mode === 0) {
-    //                 diagramSyntax.origin += `${commandMap.get(command).syntax}`;
-    //             } else if (mode === 1) {
-    //                 diagramSyntax.localA += `${commandMap.get(command).syntax}`;
-    //             } else if (mode === 2) {
-    //                 diagramSyntax.localB += `${commandMap.get(command).syntax}`;
-    //             }
-    //             if (graph.get(command)) {
-    //                 for (let i = graph.get(command).length - 1; i >= 0; --i) {
-    //                     stack.push(graph.get(command)[i]);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 }
 
 async function refreshDiagram(name, selector) {

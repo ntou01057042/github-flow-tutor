@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "65879222a2ff881550ab7d48"
+  },
+  "name": "main",
+  "lastTimestamp": {
+    "$numberLong": "1703383697439"
+  },
+  "_class": "org.example.githubflowtutor.branch.Branch"
+},
+{
+  "_id": {
+    "$oid": "6587922ba2ff881550ab7d4c"
+  },
+  "name": "a1",
+  "lastTimestamp": {
+    "$numberLong": "1703383594611"
+  },
+  "_class": "org.example.githubflowtutor.branch.Branch"
+},
+{
+  "_id": {
+    "$oid": "65879231a2ff881550ab7d50"
+  },
+  "name": "b1",
+  "lastTimestamp": {
+    "$numberLong": "1703383632214"
+  },
+  "_class": "org.example.githubflowtutor.branch.Branch"
+},
+{
+  "_id": {
+    "$oid": "65879259a2ff881550ab7d59"
+  },
+  "name": "a2",
+  "lastTimestamp": {
+    "$numberLong": "1703383681850"
+  },
+  "_class": "org.example.githubflowtutor.branch.Branch"
+}]
