@@ -130,7 +130,7 @@ function renderOrigin() {
             // console.log('data:', data);
             // initialize
             commands.origin = data;
-            console.log('commands.origin:', commands.origin);
+            // console.log('commands.origin:', commands.origin);
             diagramSyntax.origin = 'gitGraph';
             // diagramSyntax.origin = 'gitGraph TB:';
             // render diagram

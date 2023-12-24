@@ -52,60 +52,29 @@ window.addEventListener('load', () => {
     commandInput.addEventListener('keypress', async (e) => {
         if (e.key === 'Enter') {
             const input = e.target.value;
-            console.log(input);
             if (input === 'git branch') {
                 if (currentLocal === 'A') {
                     await branchLocalA();
-                    e.target.value = '';
-                    suggestion.innerHTML = '你可以在新建立的分支內提交commit。';
-                    suggestion.innerHTML += '\n（提示：git commit）';
-                    if (!commandList.innerHTML.includes('<option value="git commit"></option>')) {
-                        commandList.innerHTML += '<option value="git commit"></option>';
-                    }
                 } else if (currentLocal === 'B') {
                     await branchLocalB();
-                    e.target.value = '';
-                    suggestion.innerHTML = '你可以在新建立的分支內提交commit。';
-                    suggestion.innerHTML += '\n（提示：git commit）';
-                    if (!commandList.innerHTML.includes('<option value="git commit"></option>')) {
-                        commandList.innerHTML += '<option value="git commit"></option>';
-                    }
+                }
+                e.target.value = '';
+                suggestion.innerHTML = '你可以在新建立的分支內提交commit。';
+                suggestion.innerHTML += '\n（提示：git commit）';
+                if (!commandList.innerHTML.includes('<option value="git commit"></option>')) {
+                    commandList.innerHTML += '<option value="git commit"></option>';
                 }
             } else if (input === 'git commit') {
                 if (currentLocal === 'A') {
                     await commitLocalA();
-                    e.target.value = '';
-                    suggestion.innerHTML = '你可以隨時將本地端的內容同步到GitHub上。';
-                    suggestion.innerHTML += '\n（提示：git push）';
-                    if (!commandList.innerHTML.includes('<option value="git push"></option>')) {
-                        commandList.innerHTML += '<option value="git push"></option>';
-                    }
                 } else if (currentLocal === 'B') {
                     await commitLocalB();
-                    e.target.value = '';
-                    suggestion.innerHTML = '你可以隨時將本地端的內容同步到GitHub上。';
-                    suggestion.innerHTML += '\n（提示：git push）';
-                    if (!commandList.innerHTML.includes('<option value="git push"></option>')) {
-                        commandList.innerHTML += '<option value="git push"></option>';
-                    }
                 }
-            } else if (input === 'git commit') {
-                if (currentLocal === 'A') {
-                    await commitLocalA();
-                    e.target.value = '';
-                    suggestion.innerHTML = '你可以隨時將本地端的內容同步到GitHub上。';
-                    suggestion.innerHTML += '\n（提示：git push）';
-                    if (!commandList.innerHTML.includes('<option value="git push"></option>')) {
-                        commandList.innerHTML += '<option value="git push"></option>';
-                    }
-                } else if (currentLocal === 'B') {
-                    await commitLocalB();
-                    e.target.value = '';
-                    suggestion.innerHTML = '你可以隨時將本地端的內容同步到GitHub上。';
-                    suggestion.innerHTML += '\n（提示：git push）';
-                    if (!commandList.innerHTML.includes('<option value="git push"></option>')) {
-                        commandList.innerHTML += '<option value="git push"></option>';
-                    }
+                e.target.value = '';
+                suggestion.innerHTML = '你可以持續地提交commit，並隨時將本地端的內容同步到GitHub上。';
+                suggestion.innerHTML += '\n（提示：git push）';
+                if (!commandList.innerHTML.includes('<option value="git push"></option>')) {
+                    commandList.innerHTML += '<option value="git push"></option>';
                 }
             } else if (input.startsWith('git checkout')) {
                 if (currentLocal === 'A') {
@@ -114,13 +83,17 @@ window.addEventListener('load', () => {
                     e.target.value = '';
                 }
             } else if (input === 'git push') {
-                console.log('test')
                 if (currentLocal === 'A') {
                     await pushLocalA();
-                    e.target.value = '';
                 } else if (currentLocal === 'B') {
                     await pushLocalB();
-                    e.target.value = '';
+                }
+                e.target.value = '';
+                if (document.getElementById('local-a-diagram').innerHTML === '' ||
+                    document.getElementById('local-b-diagram').innerHTML === '') {
+                    suggestion.innerHTML = '現在請你將GitHub上的內容clone到另一個本地端，你可以把它視為是另一個團隊成員的本地端內容。';
+                } else {
+                    suggestion.innerHTML = '現在請你回到一開始的本地端。';
                 }
             }
         }
