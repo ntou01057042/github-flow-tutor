@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 100hv;
+    height: 100vh;
     background-color: aliceblue;
     background-image: radial-gradient(at 10% 10%, hsla(22, 70%, 77%, 1) 0px, transparent 50%),
     radial-gradient(at 70% 10%, hsla(59, 78%, 73%, 0.7) 0px, transparent 70%),
@@ -47,15 +47,11 @@ body {
     display: none;
 }
 
-.displayOff {
-    display: none;
-}
-
 #suggestion {
     margin-top: 10px;
     border-radius: 20px;
     background-color: hsla(360, 0%, 100%, 0.5);
-    height: 150px;
+    height: 20vh;
     padding: 10px;
 }
 
@@ -63,12 +59,12 @@ body {
     border-radius: 20px;
     margin-top: 10px;
     background-color: hsla(360, 0%, 100%, 0.5);
-    height: 420px;
+    height: 62vh;
 }
 
 #command-input {
     margin-top: 10px;
-    height: 30px;
+    height: 5vh;
     width: 100%;
     border: 0;
     border-radius: 20px;
@@ -108,11 +104,11 @@ body {
 }
 
 #origin-diagram {
-    height: 35vh;
+    height: 30vh;
     /*overflow: scroll;*/
 }
 
 #local-a-diagram, #local-b-diagram {
-    height: 35vh;
+    height: 30vh;
     /*overflow: scroll;*/
 }
