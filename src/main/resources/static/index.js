@@ -1,12 +1,12 @@
-import { reset } from "./diagrams.js";
-import { cloneLocalA } from "./diagrams.js";
-import { cloneLocalB } from "./diagrams.js";
-import { branchLocalA } from "./diagrams.js";
-import { branchLocalB } from "./diagrams.js";
-import { commitLocalA } from "./diagrams.js";
-import { commitLocalB } from "./diagrams.js";
-import { pushLocalA } from "./diagrams.js";
-import { pushLocalB } from "./diagrams.js";
+import {reset} from "./diagrams.js";
+import {cloneLocalA} from "./diagrams.js";
+import {cloneLocalB} from "./diagrams.js";
+import {branchLocalA} from "./diagrams.js";
+import {branchLocalB} from "./diagrams.js";
+import {commitLocalA} from "./diagrams.js";
+import {commitLocalB} from "./diagrams.js";
+import {pushLocalA} from "./diagrams.js";
+import {pushLocalB} from "./diagrams.js";
 
 let suggestion;
 
@@ -52,6 +52,7 @@ window.addEventListener('load', () => {
     commandInput.addEventListener('keypress', async (e) => {
         if (e.key === 'Enter') {
             const input = e.target.value;
+            console.log(input);
             if (input === 'git branch') {
                 if (currentLocal === 'A') {
                     await branchLocalA();
@@ -105,20 +106,21 @@ window.addEventListener('load', () => {
                     if (!commandList.innerHTML.includes('<option value="git push"></option>')) {
                         commandList.innerHTML += '<option value="git push"></option>';
                     }
-                } else if (input.startsWith('git checkout')) {
-                    if (currentLocal === 'A') {
-                        e.target.value = '';
-                    } else if (currentLocal === 'B') {
-                        e.target.value = '';
-                    }
-                } else if (input === 'git push') {
-                    if (currentLocal === 'A') {
-                        await pushLocalA();
-                        e.target.value = '';
-                    } else if (currentLocal === 'B') {
-                        await pushLocalB();
-                        e.target.value = '';
-                    }
+                }
+            } else if (input.startsWith('git checkout')) {
+                if (currentLocal === 'A') {
+                    e.target.value = '';
+                } else if (currentLocal === 'B') {
+                    e.target.value = '';
+                }
+            } else if (input === 'git push') {
+                console.log('test')
+                if (currentLocal === 'A') {
+                    await pushLocalA();
+                    e.target.value = '';
+                } else if (currentLocal === 'B') {
+                    await pushLocalB();
+                    e.target.value = '';
                 }
             }
         }
