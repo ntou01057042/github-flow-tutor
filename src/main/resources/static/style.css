@@ -31,19 +31,24 @@ body {
 #remote-div {
     background-color: hsla(360, 0%, 100%, 0.5);
     border-radius: 30px;
-    height: 350px;
+    height: 300px;
 }
 
 #local-a-div {
     background-color: hsla(360, 0%, 100%, 0.5);
     border-radius: 30px;
-    height: 350px;
+    height: 300px;
 }
 
 #local-b-div {
     background-color: hsla(360, 0%, 100%, 0.5);
     border-radius: 30px;
-    height: 350px;
+    height: 300px;
+    display: none;
+}
+
+.displayOff{
+    display: none;
 }
 
 #suggestion {
@@ -51,6 +56,7 @@ body {
     border-radius: 20px;
     background-color: hsla(360, 0%, 100%, 0.5);
     height: 150px;
+    padding: 10px;
 }
 
 #record {
@@ -66,19 +72,42 @@ body {
     width: 100%;
     border: 0;
     border-radius: 20px;
-}
-
-#command-input {
     text-indent: 10px;
 }
 
 #reset-button {
     margin-top: 10px;
     margin-left: 5px;
+    margin-bottom: 5px;
     border-radius: 20px;
     background-color: hsla(360, 0%, 100%, 0.7);
 }
 
-#switch:hover {
+#switch-to-a, #switch-to-b{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    background-color: hsla(360, 0%, 100%, 0.7);
+}
+
+#switch-to-a:hover, #switch-to-b:hover {
     background-color: hsla(360, 0%, 80%, 0.7);
+}
+
+#clone-local-a-button, #clone-local-b-button{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    background-color: hsla(360, 0%, 100%, 0.7);
+}
+
+#clone-local-a-button:hover, #clone-local-b-button:hover{
+    background-color: hsla(360, 0%, 80%, 0.7);
+}
+
+#local-a-diagram, #local-b-diagram{
+    height: 200px;
+    overflow: scroll;
 }

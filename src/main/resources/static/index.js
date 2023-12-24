@@ -20,6 +20,12 @@ let currentLocal;
 let commandList;
 let commandInput;
 
+let switchToABtn;
+let switchToBBtn;
+
+let localA;
+let localB;
+
 window.addEventListener('load', () => {
     suggestion = document.getElementById('suggestion');
 
@@ -32,6 +38,12 @@ window.addEventListener('load', () => {
     commandInput = document.getElementById('command-input');
 
     resetButton.addEventListener('click', reset);
+
+    switchToABtn = document.getElementById('switch-to-a');
+    switchToBBtn = document.getElementById('switch-to-b');
+
+    localA = document.getElementById('local-a-div');
+    localB = document.getElementById('local-b-div');
 
     cloneLocalAButton.addEventListener('click', async () => {
         await cloneLocalA();
@@ -122,5 +134,15 @@ window.addEventListener('load', () => {
                 }
             }
         }
+    });
+
+    switchToBBtn.addEventListener('click', async () =>{
+        localA.style.display = 'none';
+        localB.style.display = 'unset';
+    });
+
+    switchToABtn.addEventListener('click', async () =>{
+        localB.style.display = 'none';
+        localA.style.display = 'unset';
     });
 });
