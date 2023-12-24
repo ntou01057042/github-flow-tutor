@@ -20,22 +20,10 @@
 <div class="px-5">
     <div class="row justify-content-evenly">
         <div class=" col-3" id="command">
-            <div id="suggestion"></div>
+            <div id="suggestion">請點選畫面右下方將GitHub儲存庫clone到本地端（A或B）。</div>
             <div id="record"></div>
             <input type="text" id="command-input" list="git-commands">
-            <datalist id="git-commands">
-                <option value="git commit"></option>
-                <option value="git checkout"></option>
-                <option value="git "></option>
-                <option value="git "></option>
-                <option value="git "></option>
-                <option value="git "></option>
-                <option value="git "></option>
-                <option value="git "></option>
-                <option value="git "></option>
-                <option value="git "></option>
-                <option value="git "></option>
-            </datalist>
+            <datalist id="git-commands"></datalist>
         </div>
         <div class="col-8">
             <div class="row gy-3">
@@ -44,6 +32,7 @@
                     <pre class="mermaid" id="origin-diagram"></pre>
                 </div>
                 <div class="col-12" id="local-a-div">
+                    <button id="clone-local-a-button">Clone</button>
                     <!--                    <button type="button" class="btn btn-light" id="switch">切換本地端</button>-->
                     <div>
                         <pre class="mermaid" id="local-a-diagram"></pre>
@@ -51,6 +40,7 @@
                     </div>
                 </div>
                 <div class="col-12" id="local-b-div">
+                    <button id="clone-local-b-button">Clone</button>
                     <!--                    <button type="button" class="btn btn-light" id="switch">切換本地端</button>-->
                     <div>
                         <pre class="mermaid" id="local-b-diagram"></pre>
@@ -77,7 +67,8 @@
     </div>
 </div>
 
-<script type="module" src="index2.js"></script>
+<script type="module" src="diagrams.js"></script>
+<script type="module" src="index.js"></script>
 </body>
 
 </html>
