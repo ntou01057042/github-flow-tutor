@@ -1,12 +1,12 @@
-import {reset} from "./diagrams.js";
-import {cloneLocalA} from "./diagrams.js";
-import {cloneLocalB} from "./diagrams.js";
-import {branchLocalA} from "./diagrams.js";
-import {branchLocalB} from "./diagrams.js";
-import {commitLocalA} from "./diagrams.js";
-import {commitLocalB} from "./diagrams.js";
-import {pushLocalA} from "./diagrams.js";
-import {pushLocalB} from "./diagrams.js";
+import { reset } from "./diagrams.js";
+import { cloneLocalA } from "./diagrams.js";
+import { cloneLocalB } from "./diagrams.js";
+import { branchLocalA } from "./diagrams.js";
+import { branchLocalB } from "./diagrams.js";
+import { commitLocalA } from "./diagrams.js";
+import { commitLocalB } from "./diagrams.js";
+import { pushLocalA } from "./diagrams.js";
+import { pushLocalB } from "./diagrams.js";
 
 let suggestion;
 
