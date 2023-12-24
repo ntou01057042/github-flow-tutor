@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100hv;
+    background-color: aliceblue;
+    background-image:
+        radial-gradient(at 10% 10%, hsla(22, 70%, 77%, 1) 0px, transparent 50%),
+        radial-gradient(at 70% 10%, hsla(59, 78%, 73%, 0.7) 0px, transparent 70%),
+        radial-gradient(at 50% 70%, hsla(191, 57%, 60%, 0.7) 0px, transparent 100%);
+}
+
+.row {
+    height: calc(100vh - 40px);
+}
+
+
+#bar {
+    margin-left: 20px;
+}
+
+#command {
+    background-color: hsla(0, 0%, 100%, 0.5);
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+#remote {
+    background-color: hsla(360, 0%, 100%, 0.5);
+    border-radius: 30px;
+    height: 300px;
+}
+
+#local {
+    background-color: hsla(360, 0%, 100%, 0.5);
+    border-radius: 30px;
+    height: 300px;
+}
+
+#suggestion {
+    margin-top: 10px;
+    border-radius: 20px;
+    background-color: hsla(360, 0%, 100%, 0.5);
+    height: 150px;
+}
+
+#record {
+    border-radius: 20px;
+    margin-top: 10px;
+    background-color: hsla(360, 0%, 100%, 0.5);
+    height: 420px;
+}
+
+#command-input {
+    margin-top: 10px;
+    height: 30px;
+    width: 100%;
+    border: 0;
+    border-radius: 20px;
+}
+
+#command-input {
+    text-indent: 10px;
+}
+
+#switch{
+    margin-top: 10px;
+    margin-left: 5px;
+    border-radius: 20px;
+    background-color: hsla(360, 0%, 100%, 0.7);
+}
+
+#switch:hover{
+    background-color: hsla(360, 0%, 80%, 0.7);
+}

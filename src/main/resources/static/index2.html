@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<button id="reset-button">Reset</button>
+<pre class="mermaid" id="origin-diagram"></pre>
+<div>
+    <pre class="mermaid" id="local-a-diagram"></pre>
+    <h1 id="local-a-current-branch" data-branch="main"></h1>
+</div>
+<div>
+    <pre class="mermaid" id="local-b-diagram"></pre>
+    <h1 id="local-b-current-branch" data-branch="main"></h1>
+</div>
+<button id="clone-local-a-button">Clone (local a)</button>
+<button id="commit-local-a-button">Commit (local a)</button>
+<button id="branch-local-a-button">Branch (local a)</button>
+<input id="checkout-local-a-input" size="6">
+<button id="checkout-local-a-button">Checkout (local a)</button>
+<input id="merge-local-a-input" size="6">
+<button id="merge-local-a-button">Merge (local a)</button>
+<button id="push-local-a-button">Push (local a)</button>
+<button id="pull-local-a-button">Pull (local a)</button>
+<br>
+<hr>
+<button id="clone-local-b-button">Clone (local b)</button>
+<button id="commit-local-b-button">Commit (local b)</button>
+<button id="branch-local-b-button">Branch (local b)</button>
+<input id="checkout-local-b-input" size="6">
+<button id="checkout-local-b-button">Checkout (local b)</button>
+<input id="merge-local-b-input" size="6">
+<button id="merge-local-b-button">Merge (local b)</button>
+<button id="push-local-b-button">Push (local b)</button>
+<button id="pull-local-b-button">Pull (local b)</button>
+<script type="module" src="index2.js"></script>
+</body>
+</html>
