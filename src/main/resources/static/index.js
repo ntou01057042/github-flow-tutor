@@ -44,6 +44,7 @@ window.addEventListener('load', () => {
 
     localA = document.getElementById('local-a-div');
     localB = document.getElementById('local-b-div');
+    localB.style.display = 'none';
 
     cloneLocalAButton.addEventListener('click', async (e) => {
         e.target.style.display = 'none';

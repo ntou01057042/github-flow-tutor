@@ -19,7 +19,7 @@
 </div>
 <div class="px-5">
     <div class="row justify-content-evenly">
-        <div class=" col-3" id="command">
+        <div class=" col-3 " id="command">
             <div id="suggestion">請點選畫面右下方將GitHub儲存庫clone到本地端（A或B）。</div>
             <div id="record"></div>
             <input type="text" id="command-input" list="git-commands">
@@ -29,12 +29,13 @@
             <div class="row gy-3">
                 <div class="col-12" id="remote-div">
                     <button type="button" class="btn btn-light" id="reset-button">Reset</button>
+                    <span class="title">GitHub</span>
                     <pre class="mermaid" id="origin-diagram"></pre>
-                    <h5>GitHub</h5>
                 </div>
                 <div class="col-12" id="local-a-div">
                     <button type="button" class="btn btn-light" id="switch-to-b">切換本地端</button>
                     <button type="button" class="btn btn-light" id="clone-local-a-button">Clone</button>
+                    <span class="title">LocalA</span>
                     <div>
                         <pre class="mermaid" id="local-a-diagram"></pre>
                         <h5 id="local-a-current-branch" data-branch="main"></h5>
@@ -43,6 +44,7 @@
                 <div class="col-12" id="local-b-div">
                     <button type="button" class="btn btn-light" id="switch-to-a">切換本地端</button>
                     <button type="button" class="btn btn-light" id="clone-local-b-button">Clone</button>
+                    <span class="title">LocalB</span>
                     <div>
                         <pre class="mermaid" id="local-b-diagram"></pre>
                         <h5 id="local-b-current-branch" data-branch="main"></h5>

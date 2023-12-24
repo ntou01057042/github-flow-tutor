@@ -13,7 +13,7 @@ body {
 }
 
 .row {
-    height: calc(100vh - 40px);
+    height: 94vh;
 }
 
 
@@ -26,25 +26,14 @@ body {
     align-items: center;
     border-radius: 20px;
     margin-bottom: 10px;
+    box-shadow: -7px 10px 10px 0 rgba(90, 65, 100, 0.2);
 }
 
-#remote-div {
-    background-color: hsla(360, 0%, 100%, 0.5);
+#remote-div, #local-a-div, #local-b-div {
+    background-color: hsla(360, 0%, 100%, 0.6);
     border-radius: 30px;
     height: 45vh;
-}
-
-#local-a-div {
-    background-color: hsla(360, 0%, 100%, 0.5);
-    border-radius: 30px;
-    height: 45vh;
-}
-
-#local-b-div {
-    background-color: hsla(360, 0%, 100%, 0.5);
-    border-radius: 30px;
-    height: 45vh;
-    display: none;
+    box-shadow: -7px 10px 10px 0 rgba(90, 65, 100, 0.2);
 }
 
 #suggestion {
@@ -111,4 +100,12 @@ body {
 #local-a-diagram, #local-b-diagram {
     height: 30vh;
     /*overflow: scroll;*/
+}
+
+.title{
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 20px;
 }
