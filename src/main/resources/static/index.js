@@ -45,7 +45,8 @@ window.addEventListener('load', () => {
     localA = document.getElementById('local-a-div');
     localB = document.getElementById('local-b-div');
 
-    cloneLocalAButton.addEventListener('click', async () => {
+    cloneLocalAButton.addEventListener('click', async (e) => {
+        e.target.style.display = 'none';
         await cloneLocalA();
         currentLocal = 'A';
         suggestion.innerHTML = '你可以在A本地端建立一個新的分支來開始提交commit。';
@@ -53,7 +54,8 @@ window.addEventListener('load', () => {
         commandList.innerHTML += '<option value="git branch"></option>';
     });
 
-    cloneLocalBButton.addEventListener('click', async () => {
+    cloneLocalBButton.addEventListener('click', async (e) => {
+        e.target.style.display = 'none';
         await cloneLocalB();
         currentLocal = 'B';
         suggestion.innerHTML = '你可以在B本地端建立一個新的分支來開始提交commit。';
@@ -114,10 +116,12 @@ window.addEventListener('load', () => {
     switchToBBtn.addEventListener('click', async () =>{
         localA.style.display = 'none';
         localB.style.display = 'unset';
+        currentLocal = 'B';
     });
 
     switchToABtn.addEventListener('click', async () =>{
         localB.style.display = 'none';
         localA.style.display = 'unset';
+        currentLocal = 'A';
     });
 });

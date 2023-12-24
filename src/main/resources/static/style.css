@@ -31,23 +31,23 @@ body {
 #remote-div {
     background-color: hsla(360, 0%, 100%, 0.5);
     border-radius: 30px;
-    height: 300px;
+    height: 45vh;
 }
 
 #local-a-div {
     background-color: hsla(360, 0%, 100%, 0.5);
     border-radius: 30px;
-    height: 300px;
+    height: 45vh;
 }
 
 #local-b-div {
     background-color: hsla(360, 0%, 100%, 0.5);
     border-radius: 30px;
-    height: 300px;
+    height: 45vh;
     display: none;
 }
 
-.displayOff{
+.displayOff {
     display: none;
 }
 
@@ -83,7 +83,7 @@ body {
     background-color: hsla(360, 0%, 100%, 0.7);
 }
 
-#switch-to-a, #switch-to-b{
+#switch-to-a, #switch-to-b {
     margin-top: 10px;
     margin-left: 5px;
     margin-bottom: 5px;
@@ -95,7 +95,7 @@ body {
     background-color: hsla(360, 0%, 80%, 0.7);
 }
 
-#clone-local-a-button, #clone-local-b-button{
+#clone-local-a-button, #clone-local-b-button {
     margin-top: 10px;
     margin-left: 5px;
     margin-bottom: 5px;
@@ -103,11 +103,16 @@ body {
     background-color: hsla(360, 0%, 100%, 0.7);
 }
 
-#clone-local-a-button:hover, #clone-local-b-button:hover{
+#clone-local-a-button:hover, #clone-local-b-button:hover {
     background-color: hsla(360, 0%, 80%, 0.7);
 }
 
-#local-a-diagram, #local-b-diagram{
-    height: 200px;
-    overflow: scroll;
+#origin-diagram {
+    height: 35vh;
+    /*overflow: scroll;*/
+}
+
+#local-a-diagram, #local-b-diagram {
+    height: 35vh;
+    /*overflow: scroll;*/
 }
