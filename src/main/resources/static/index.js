@@ -138,11 +138,11 @@ window.addEventListener('load', () => {
 
     switchToBBtn.addEventListener('click', async () =>{
         localA.style.display = 'none';
-        localB.style.display = 'block';
+        localB.style.display = 'unset';
     });
 
     switchToABtn.addEventListener('click', async () =>{
         localB.style.display = 'none';
-        localA.style.display = 'block';
+        localA.style.display = 'unset';
     });
 });
