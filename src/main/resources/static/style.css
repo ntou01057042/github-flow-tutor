@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
+
+.english-font {
+    font-family: "Times New Roman";
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -40,8 +46,12 @@ body {
     margin-top: 10px;
     border-radius: 20px;
     background-color: hsla(360, 0%, 100%, 0.5);
-    height: 20vh;
+    /*height: 20vh;*/
     padding: 10px;
+    font-family: "cwTeXFangSong";
+    font-size: xx-large;
+    display: block;
+    overflow: hidden;
 }
 
 #record {
@@ -102,7 +112,7 @@ body {
     /*overflow: scroll;*/
 }
 
-.title{
+.title {
     float: right;
     margin-right: 10px;
     margin-top: 10px;
