@@ -36,12 +36,13 @@
             <div class="row gy-3">
                 <div class="col-12" id="remote-div">
                     <button type="button" class="btn btn-light" id="reset-button">Reset</button>
+                    <span class="title">GitHub</span>
                     <pre class="mermaid" id="origin-diagram"></pre>
-                    <h5>GitHub</h5>
                 </div>
                 <div class="col-12" id="local-a-div">
                     <button type="button" class="btn btn-light" id="switch-to-b">切換本地端</button>
                     <button type="button" class="btn btn-light" id="clone-local-a-button">Clone</button>
+                    <span class="title">LocalA</span>
                     <div>
                         <pre class="mermaid" id="local-a-diagram"></pre>
                         <h5 id="local-a-current-branch" data-branch="main"></h5>
@@ -50,6 +51,7 @@
                 <div class="col-12" id="local-b-div">
                     <button type="button" class="btn btn-light" id="switch-to-a">切換本地端</button>
                     <button type="button" class="btn btn-light" id="clone-local-b-button">Clone</button>
+                    <span class="title">LocalB</span>
                     <div>
                         <pre class="mermaid" id="local-b-diagram"></pre>
                         <h5 id="local-b-current-branch" data-branch="main"></h5>
@@ -68,10 +70,40 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
+        <nav>
+            <ul class="m-0 p-0" style="list-style-type: none;">
+                <li style="height: 40px">
+                    <a href="https://docs.github.com/en/get-started/quickstart/github-flow"
+                       target="_blank" style="text-decoration: none; font-size: 20px">GitHub-flow</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank"
+                       style="text-decoration: none; font-size: 20px">Conventional Commit</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://docs.github.com/en/repositories" target="_blank"
+                       style="text-decoration: none; font-size: 20px">Repositories</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://docs.github.com/en/pull-requests" target="_blank"
+                       style="text-decoration: none; font-size: 20px">Pull request</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://docs.github.com/en/desktop" target="_blank"
+                       style="text-decoration: none; font-size: 20px">GitHub Desktop</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://www.jetbrains.com/help/idea/using-git-integration.html" target="_blank"
+                       style="text-decoration: none; font-size: 20px">Intellij
+                        Git & GitHub</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://code.visualstudio.com/docs/sourcecontrol/overview" target="_blank"
+                       style="text-decoration: none; font-size: 20px">VS code Git &
+                        GitHub</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 

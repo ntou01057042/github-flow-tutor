@@ -62,6 +62,7 @@ window.addEventListener('load', () => {
 
     localA = document.getElementById('local-a-div');
     localB = document.getElementById('local-b-div');
+    localB.style.display = 'none';
 
     resetButton.addEventListener('click', reset);
 

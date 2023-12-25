@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 100hv;
+    height: 100vh;
     background-color: aliceblue;
     background-image: radial-gradient(at 10% 10%, hsla(22, 70%, 77%, 1) 0px, transparent 50%),
     radial-gradient(at 70% 10%, hsla(59, 78%, 73%, 0.7) 0px, transparent 70%),
@@ -13,7 +13,7 @@ body {
 }
 
 .row {
-    height: calc(100vh - 40px);
+    height: 94vh;
 }
 
 
@@ -26,36 +26,21 @@ body {
     align-items: center;
     border-radius: 20px;
     margin-bottom: 10px;
+    box-shadow: -7px 10px 10px 0 rgba(90, 65, 100, 0.2);
 }
 
-#remote-div {
-    background-color: hsla(360, 0%, 100%, 0.5);
+#remote-div, #local-a-div, #local-b-div {
+    background-color: hsla(360, 0%, 100%, 0.6);
     border-radius: 30px;
     height: 45vh;
-}
-
-#local-a-div {
-    background-color: hsla(360, 0%, 100%, 0.5);
-    border-radius: 30px;
-    height: 45vh;
-}
-
-#local-b-div {
-    background-color: hsla(360, 0%, 100%, 0.5);
-    border-radius: 30px;
-    height: 45vh;
-    display: none;
-}
-
-.displayOff {
-    display: none;
+    box-shadow: -7px 10px 10px 0 rgba(90, 65, 100, 0.2);
 }
 
 #suggestion {
     margin-top: 10px;
     border-radius: 20px;
     background-color: hsla(360, 0%, 100%, 0.5);
-    height: 150px;
+    height: 20vh;
     padding: 10px;
 }
 
@@ -63,12 +48,12 @@ body {
     border-radius: 20px;
     margin-top: 10px;
     background-color: hsla(360, 0%, 100%, 0.5);
-    height: 420px;
+    height: 62vh;
 }
 
 #command-input {
     margin-top: 10px;
-    height: 30px;
+    height: 5vh;
     width: 100%;
     border: 0;
     border-radius: 20px;
@@ -108,9 +93,49 @@ body {
 }
 
 #origin-diagram {
-    height: 35vh;
+    height: 30vh;
+    /*overflow: scroll;*/
 }
 
 #local-a-diagram, #local-b-diagram {
-    height: 35vh;
+    height: 30vh;
+    /*overflow: scroll;*/
+}
+
+.title{
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+nav {
+    font-weight: bold;
+    color: white;
+    border: 2px solid RoyalBlue;
+    text-align: center;
+    width: calc(100% / 6);
+    background-color: RoyalBlue;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    border-top: 2px solid RoyalBlue;
+    background-color: white;
+    color: black;
+}
+
+nav ul li:hover {
+    background-color: PowderBlue;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
