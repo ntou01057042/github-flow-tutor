@@ -58,7 +58,10 @@ body {
     border-radius: 20px;
     margin-top: 10px;
     background-color: hsla(360, 0%, 100%, 0.5);
-    height: 62vh;
+    /*height: 62vh;*/
+    display: block;
+    overflow: hidden;
+    padding: 10px;
 }
 
 #command-input {
