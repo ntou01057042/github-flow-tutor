@@ -1,5 +1,6 @@
 package org.example.githubflowtutor.branch;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,13 +10,16 @@ public class Branch {
     private String id;
     private String name;
     private long lastTimestamp;
+    private boolean deleted;
 
     public Branch() {
     }
 
+    @JsonCreator
     public Branch(String name, long lastTimestamp) {
         this.name = name;
         this.lastTimestamp = lastTimestamp;
+        this.deleted = false;
     }
 
     public String getId() {
@@ -40,5 +44,13 @@ public class Branch {
 
     public void setLastTimestamp(long lastTimestamp) {
         this.lastTimestamp = lastTimestamp;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

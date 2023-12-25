@@ -19,11 +19,18 @@
 </div>
 <div class="px-5">
     <div class="row justify-content-evenly">
-        <div class=" col-3 " id="command">
-            <div id="suggestion">請點選畫面右下方將GitHub儲存庫clone到本地端（A或B）。</div>
+        <div class=" col-3" id="command">
+            <div id="suggestion">請點選畫面右下方的按鈕來將GitHub儲存庫clone到本地端。</div>
             <div id="record"></div>
             <input type="text" id="command-input" list="git-commands">
-            <datalist id="git-commands"></datalist>
+            <datalist id="git-commands">
+                <option value="git branch"></option>
+                <option value="git commit"></option>
+                <option value="git push"></option>
+                <option value="git checkout "></option>
+                <option value="git merge "></option>
+                <option value="git pull"></option>
+            </datalist>
         </div>
         <div class="col-8">
             <div class="row gy-3">
