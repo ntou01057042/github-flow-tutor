@@ -42,6 +42,7 @@ public class BranchService {
             Optional<Branch> branch = repository.findByName(b.getName());
             if (branch.isPresent()) {
                 branch.get().setLastTimestamp(b.getLastTimestamp());
+                branch.get().setDeleted(b.isDeleted());
                 repository.save(branch.get());
             } else {
                 repository.insert(b);

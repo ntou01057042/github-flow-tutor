@@ -109,10 +109,8 @@ body {
 
 #origin-diagram {
     height: 35vh;
-    /*overflow: scroll;*/
 }
 
 #local-a-diagram, #local-b-diagram {
     height: 35vh;
-    /*overflow: scroll;*/
 }

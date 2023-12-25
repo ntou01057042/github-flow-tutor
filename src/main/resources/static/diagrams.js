@@ -6,21 +6,13 @@ mermaid.initialize({
 
 const diagram = {};
 const diagramSyntax = {};
-const currentBranch = {};
+export const currentBranch = {};
 
-let mergeLocalAInput;
-let mergeLocalAButton;
-let checkoutLocalAInput;
-let checkoutLocalAButton;
 let pullLocalAButton;
-let mergeLocalBInput;
-let mergeLocalBButton;
-let checkoutLocalBInput;
-let checkoutLocalBButton;
 let pullLocalBButton;
 
 const commands = {};
-const branches = {};
+export const branches = {};
 const branchNumber = {
     origin: {},
     localA: 0,
@@ -132,7 +124,6 @@ function renderOrigin() {
             commands.origin = data;
             // console.log('commands.origin:', commands.origin);
             diagramSyntax.origin = 'gitGraph';
-            // diagramSyntax.origin = 'gitGraph TB:';
             // render diagram
             dfs(commands.origin, 0);
             diagram.origin.innerHTML = diagramSyntax.origin;
@@ -344,7 +335,7 @@ export async function pushLocalA() {
         method: 'POST',
         url: '/commands/push',
         success: function () {
-            console.log('/commands/push [POST] success');
+            console.log('/commands/push [POST] success!');
             // push branches
             $.ajax({
                 contentType: 'application/json',
@@ -352,7 +343,7 @@ export async function pushLocalA() {
                 method: 'POST',
                 url: '/branches/push',
                 success: function (data) {
-                    console.log('/branches/push [POST] success');
+                    console.log('/branches/push [POST] success!');
                     renderOrigin();
                 }
             });
@@ -371,7 +362,7 @@ export async function pushLocalB() {
         method: 'POST',
         url: '/commands/push',
         success: function () {
-            console.log('/commands/push [POST] success');
+            console.log('/commands/push [POST] success!');
 
             // push branches
             $.ajax({
@@ -380,12 +371,142 @@ export async function pushLocalB() {
                 method: 'POST',
                 url: '/branches/push',
                 success: function () {
-                    console.log('/branches/push [POST] success');
+                    console.log('/branches/push [POST] success!');
                     renderOrigin();
                 }
             });
         }
     });
+}
+
+export async function checkoutLocalA(branch) {
+    // add new command
+    commands.localA.push({
+        syntax: `\ncheckout ${currentBranch.localA.dataset.branch}\ncheckout ${branch}`,
+        timestamp: Date.now(),
+        parentTimestamp: branches.localA.get(currentBranch.localA.dataset.branch).lastTimestamp,
+    });
+    // console.log('commands.localA:', commands.localA);
+    // render diagram
+    diagramSyntax.localA += `\ncheckout ${currentBranch.localA.dataset.branch}`;
+    diagramSyntax.localA += `\ncheckout ${branch}`;
+    diagram.localA.innerHTML = diagramSyntax.localA;
+    await refreshDiagram('localA', '#local-a-diagram');
+    // update current branch text
+    currentBranch.localA.dataset.branch = branch;
+    currentBranch.localA.innerHTML = `現在分支：${branch}`;
+}
+
+export async function checkoutLocalB(branch) {
+    // add new command
+    commands.localB.push({
+        syntax: `\ncheckout ${currentBranch.localB.dataset.branch}\ncheckout ${branch}`,
+        timestamp: Date.now(),
+        parentTimestamp: branches.localB.get(currentBranch.localB.dataset.branch).lastTimestamp,
+    });
+    // console.log('commands.localB:', commands.localB);
+    // render diagram
+    diagramSyntax.localB += `\ncheckout ${currentBranch.localB.dataset.branch}`;
+    diagramSyntax.localB += `\ncheckout ${branch}`;
+    diagram.localB.innerHTML = diagramSyntax.localB;
+    await refreshDiagram('localB', '#local-b-diagram');
+    // update current branch text
+    currentBranch.localB.dataset.branch = branch;
+    currentBranch.localB.innerHTML = `現在分支：${branch}`;
+}
+
+export async function mergeLocalA(branch) {
+    const timestamp = Date.now();
+    // add new command
+    commands.localA.push({
+        syntax: `\ncheckout ${currentBranch.localA.dataset.branch}\nmerge ${branch}`,
+        timestamp: timestamp,
+        parentTimestamp: branches.localA.get(currentBranch.localA.dataset.branch).lastTimestamp,
+    });
+    // console.log('commands.localA:', commands.localA);
+    // update branch
+    branches.localA.get(currentBranch.localA.dataset.branch).lastTimestamp = timestamp;
+    branches.localA.get(branch).deleted = true;
+    // render diagram
+    diagramSyntax.localA += `\ncheckout ${currentBranch.localA.dataset.branch}`;
+    diagramSyntax.localA += `\nmerge ${branch}`;
+    diagram.localA.innerHTML = diagramSyntax.localA;
+    await refreshDiagram('localA', '#local-a-diagram');
+}
+
+export async function mergeLocalB(branch) {
+    const timestamp = Date.now();
+    // add new command
+    commands.localB.push({
+        syntax: `\ncheckout ${currentBranch.localB.dataset.branch}\nmerge ${branch}`,
+        timestamp: timestamp,
+        parentTimestamp: branches.localB.get(currentBranch.localB.dataset.branch).lastTimestamp,
+    });
+    // console.log('commands.localB:', commands.localB);
+    // update branch
+    branches.localB.get(currentBranch.localB.dataset.branch).lastTimestamp = timestamp;
+    branches.localB.get(branch).deleted = true;
+    // render diagram
+    diagramSyntax.localB += `\ncheckout ${currentBranch.localB.dataset.branch}`;
+    diagramSyntax.localB += `\nmerge ${branch}`;
+    diagram.localB.innerHTML = diagramSyntax.localB;
+    await refreshDiagram('localB', '#local-b-diagram');
+}
+
+export async function pullLocalA() {
+    // pull origin commands
+    for (const c1 of commands.origin) {
+        let flag = true;
+        for (const c2 of commands.localA) {
+            if (c2.timestamp === c1.timestamp) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            commands.localA.push(c1);
+        }
+    }
+    // console.log('commands.localA:', commands.localA);
+    // pull origin branches
+    for (const [key, value] of branches.origin) {
+        branches.localA.set(key, value);
+    }
+    // console.log('branches.localA:', branches.localA);
+    // pull branch number
+    branchNumber.localA = branchNumber.origin.a;
+    // render diagram
+    diagramSyntax.localA = 'gitGraph';
+    dfs(commands.localA, 1);
+    diagram.localA.innerHTML = diagramSyntax.localA;
+    await refreshDiagram('localA', '#local-a-diagram');
+}
+
+export async function pullLocalB() {
+    // pull origin commands
+    for (const c1 of commands.origin) {
+        let flag = true;
+        for (const c2 of commands.localB) {
+            if (c2.timestamp === c1.timestamp) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            commands.localB.push(c1);
+        }
+    }
+    // console.log('commands.localB:', commands.localB);
+    // pull origin branches
+    for (const [key, value] of branches.origin) {
+        branches.localB.set(key, value);
+    }
+    // console.log('branches.localB:', branches.localB);
+    // pull branch number
+    branchNumber.localB = branchNumber.origin.b;
+    // render diagram
+    diagramSyntax.localB = 'gitGraph';
+    dfs(commands.localB, 2);
+    diagram.localB.innerHTML = diagramSyntax.localB;
+    await refreshDiagram('localB', '#local-b-diagram');
 }
 
 window.addEventListener('load', () => {
@@ -395,152 +516,8 @@ window.addEventListener('load', () => {
     currentBranch.localA = document.getElementById('local-a-current-branch');
     currentBranch.localB = document.getElementById('local-b-current-branch');
 
-    mergeLocalAInput = document.getElementById('merge-local-a-input');
-    mergeLocalAButton = document.getElementById('merge-local-a-button');
-    checkoutLocalAInput = document.getElementById('checkout-local-a-input');
-    checkoutLocalAButton = document.getElementById('checkout-local-a-button');
     pullLocalAButton = document.getElementById('pull-local-a-button');
-    mergeLocalBInput = document.getElementById('merge-local-b-input');
-    mergeLocalBButton = document.getElementById('merge-local-b-button');
-    checkoutLocalBInput = document.getElementById('checkout-local-b-input');
-    checkoutLocalBButton = document.getElementById('checkout-local-b-button');
     pullLocalBButton = document.getElementById('pull-local-b-button');
 
     renderOrigin();
-
-    checkoutLocalAButton.addEventListener('click', async () => {
-        // add new command
-        commands.localA.push({
-            syntax: `\ncheckout ${currentBranch.localA.dataset.branch}\ncheckout ${checkoutLocalAInput.value}`,
-            timestamp: Date.now(),
-            parentTimestamp: branches.localA.get(currentBranch.localA.dataset.branch).lastTimestamp,
-        });
-        // console.log('commands.localA:', commands.localA);
-        // render diagram
-        diagramSyntax.localA += `\ncheckout ${currentBranch.localA.dataset.branch}`;
-        diagramSyntax.localA += `\ncheckout ${checkoutLocalAInput.value}`;
-        diagram.localA.innerHTML = diagramSyntax.localA;
-        await refreshDiagram('localA', '#local-a-diagram');
-        // update current branch text
-        currentBranch.localA.dataset.branch = checkoutLocalAInput.value;
-        currentBranch.localA.innerHTML = `現在分支：${checkoutLocalAInput.value}`;
-        // clear input
-        checkoutLocalAInput.value = '';
-    });
-
-    mergeLocalAButton.addEventListener('click', async () => {
-        const timestamp = Date.now();
-        // add new command
-        commands.localA.push({
-            syntax: `\ncheckout ${currentBranch.localA.dataset.branch}\nmerge ${mergeLocalAInput.value}`,
-            timestamp: timestamp,
-            parentTimestamp: branches.localA.get(currentBranch.localA.dataset.branch).lastTimestamp,
-        });
-        // console.log('commands.localA:', commands.localA);
-        // update branch
-        branches.localA.get(currentBranch.localA.dataset.branch).lastTimestamp = timestamp;
-        // render diagram
-        diagramSyntax.localA += `\ncheckout ${currentBranch.localA.dataset.branch}`;
-        diagramSyntax.localA += `\nmerge ${mergeLocalAInput.value}`;
-        diagram.localA.innerHTML = diagramSyntax.localA;
-        await refreshDiagram('localA', '#local-a-diagram');
-        // clear input
-        mergeLocalAInput.value = '';
-    });
-
-    pullLocalAButton.addEventListener('click', async () => {
-        // pull origin commands
-        for (const c1 of commands.origin) {
-            let flag = true;
-            for (const c2 of commands.localA) {
-                if (c2.timestamp === c1.timestamp) {
-                    flag = false;
-                }
-            }
-            if (flag) {
-                commands.localA.push(c1);
-            }
-        }
-        // console.log('commands.localA:', commands.localA);
-        // pull origin branches
-        for (const [key, value] of branches.origin) {
-            branches.localA.set(key, value);
-        }
-        // console.log('branches.localA:', branches.localA);
-        // pull branch number
-        branchNumber.localA = branchNumber.origin.a;
-        // render diagram
-        diagramSyntax.localA = 'gitGraph';
-        dfs(commands.localA, 1);
-        diagram.localA.innerHTML = diagramSyntax.localA;
-        await refreshDiagram('localA', '#local-a-diagram');
-    });
-
-    checkoutLocalBButton.addEventListener('click', async () => {
-        // add new command
-        commands.localB.push({
-            syntax: `\ncheckout ${currentBranch.localB.dataset.branch}\ncheckout ${checkoutLocalBInput.value}`,
-            timestamp: Date.now(),
-            parentTimestamp: branches.localB.get(currentBranch.localB.dataset.branch).lastTimestamp,
-        });
-        // console.log('commands.localB:', commands.localB);
-        // render diagram
-        diagramSyntax.localB += `\ncheckout ${currentBranch.localB.dataset.branch}`;
-        diagramSyntax.localB += `\ncheckout ${checkoutLocalBInput.value}`;
-        diagram.localB.innerHTML = diagramSyntax.localB;
-        await refreshDiagram('localB', '#local-b-diagram');
-        // update current branch text
-        currentBranch.localB.dataset.branch = checkoutLocalBInput.value;
-        currentBranch.localB.innerHTML = `現在分支：${checkoutLocalBInput.value}`;
-        // clear input
-        checkoutLocalBInput.value = '';
-    });
-
-    mergeLocalBButton.addEventListener('click', async () => {
-        const timestamp = Date.now();
-        // add new command
-        commands.localB.push({
-            syntax: `\ncheckout ${currentBranch.localB.dataset.branch}\nmerge ${mergeLocalBInput.value}`,
-            timestamp: timestamp,
-            parentTimestamp: branches.localB.get(currentBranch.localB.dataset.branch).lastTimestamp,
-        });
-        // console.log('commands.localB:', commands.localB);
-        // update branch
-        branches.localB.get(currentBranch.localB.dataset.branch).lastTimestamp = timestamp;
-        // render diagram
-        diagramSyntax.localB += `\ncheckout ${currentBranch.localB.dataset.branch}`;
-        diagramSyntax.localB += `\nmerge ${mergeLocalBInput.value}`;
-        diagram.localB.innerHTML = diagramSyntax.localB;
-        await refreshDiagram('localB', '#local-b-diagram');
-        // clear input
-        mergeLocalBInput.value = '';
-    });
-
-    pullLocalBButton.addEventListener('click', async () => {
-        // pull origin commands
-        for (const c1 of commands.origin) {
-            let flag = true;
-            for (const c2 of commands.localB) {
-                if (c2.timestamp === c1.timestamp) {
-                    flag = false;
-                }
-            }
-            if (flag) {
-                commands.localB.push(c1);
-            }
-        }
-        // console.log('commands.localB:', commands.localB);
-        // pull origin branches
-        for (const [key, value] of branches.origin) {
-            branches.localB.set(key, value);
-        }
-        // console.log('branches.localB:', branches.localB);
-        // pull branch number
-        branchNumber.localB = branchNumber.origin.b;
-        // render diagram
-        diagramSyntax.localB = 'gitGraph';
-        dfs(commands.localB, 2);
-        diagram.localB.innerHTML = diagramSyntax.localB;
-        await refreshDiagram('localB', '#local-b-diagram');
-    });
 });
