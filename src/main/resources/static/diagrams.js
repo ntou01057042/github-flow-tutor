@@ -426,7 +426,9 @@ export async function mergeLocalA(branch) {
     // console.log('commands.localA:', commands.localA);
     // update branch
     branches.localA.get(currentBranch.localA.dataset.branch).lastTimestamp = timestamp;
-    branches.localA.get(branch).deleted = true;
+    if (branch !== 'main') {
+        branches.localA.get(branch).deleted = true;
+    }
     // render diagram
     diagramSyntax.localA += `\ncheckout ${currentBranch.localA.dataset.branch}`;
     diagramSyntax.localA += `\nmerge ${branch}`;
@@ -445,7 +447,9 @@ export async function mergeLocalB(branch) {
     // console.log('commands.localB:', commands.localB);
     // update branch
     branches.localB.get(currentBranch.localB.dataset.branch).lastTimestamp = timestamp;
-    branches.localB.get(branch).deleted = true;
+    if (branch !== 'main') {
+        branches.localB.get(branch).deleted = true;
+    }
     // render diagram
     diagramSyntax.localB += `\ncheckout ${currentBranch.localB.dataset.branch}`;
     diagramSyntax.localB += `\nmerge ${branch}`;

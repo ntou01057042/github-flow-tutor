@@ -12,17 +12,19 @@
 </head>
 
 <body>
-<div class="navbar">
+<div class="navbar" id="myBar">
     <a type="button" data-bs-toggle="offcanvas" data-bs-target="#moreInfo" id="bar">
-        <div><img src="bars-solid.svg" alt="bar"></div>
+        <div><img src="bars-solid.svg" alt="bar" width="25px"></div>
     </a>
 </div>
-<div class="px-5">
+<div class="px-3">
     <div class="row justify-content-evenly">
         <div class="col-3" id="command">
             <div id="suggestion" class="chinese-font">請點選畫面右下方的按鈕來將<span class="english-font">GitHub</span>儲存庫<span
                     class="english-font">clone</span>到本地端。
             </div>
+            <div id="record-A"></div>
+            <div id="record-B"></div>
             <input type="text" id="command-input" list="git-commands" placeholder="$">
             <datalist id="git-commands">
                 <option value="git branch"></option>
@@ -32,7 +34,6 @@
                 <option value="git merge "></option>
                 <option value="git pull"></option>
             </datalist>
-            <div id="record"></div>
         </div>
         <div class="col-8">
             <div class="row gy-3">
@@ -67,42 +68,60 @@
 
 <!-- offcanvas content -->
 <div class="offcanvas offcanvas-end" id="moreInfo">
-    <div class="offcanvas-header">
-        <h1 class="offcanvas-title">Git/GitHub Info</h1>
+    <div class="offcanvas-header" id="canvas-header">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body p-0">
+        <h2 class="nav-title">Git Guides</h2>
         <nav>
-            <ul class="m-0 p-0" style="list-style-type: none;">
+            <ul class="m-0 p-0">
+                <li style="height: 40px">
+                    <a href="https://github.com/git-guides"
+                       target="_blank">Git-guides</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://training.github.com/downloads/github-git-cheat-sheet/"
+                       target="_blank">Git Cheat Sheets</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534"
+                       target="_blank">Conventional Branch</a>
+                </li>
+                <li style="height: 40px">
+                    <a href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank">Conventional Commit</a>
+                </li>
+            </ul>
+        </nav>
+        <h2 class="nav-title">GitHub Guides</h2>
+        <nav>
+            <ul class="m-0 p-0">
+                <li style="height: 40px">
+                    <a href="https://githubtraining.github.io/training-manual/book.pdf"
+                       target="_blank">GitHub Training Manual</a>
+                </li>
                 <li style="height: 40px">
                     <a href="https://docs.github.com/en/get-started/quickstart/github-flow"
-                       target="_blank" style="text-decoration: none; font-size: 20px">GitHub-flow</a>
+                       target="_blank">GitHub Flow</a>
+                </li>
+            </ul>
+        </nav>
+        <h2 class="nav-title">IDE Support</h2>
+        <nav>
+            <ul class="m-0 p-0">
+                <li style="height: 40px">
+                    <a href="https://www.jetbrains.com/help/idea/using-git-integration.html"
+                       target="_blank">IntelliJ</a>
                 </li>
                 <li style="height: 40px">
-                    <a href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank"
-                       style="text-decoration: none; font-size: 20px">Conventional Commit</a>
+                    <a href="https://code.visualstudio.com/docs/sourcecontrol/overview" target="_blank">VS Code</a>
                 </li>
+            </ul>
+        </nav>
+        <nav class="mt-3">
+            <ul class="m-0 p-0">
                 <li style="height: 40px">
-                    <a href="https://docs.github.com/en/repositories" target="_blank"
-                       style="text-decoration: none; font-size: 20px">Repositories</a>
-                </li>
-                <li style="height: 40px">
-                    <a href="https://docs.github.com/en/pull-requests" target="_blank"
-                       style="text-decoration: none; font-size: 20px">Pull request</a>
-                </li>
-                <li style="height: 40px">
-                    <a href="https://docs.github.com/en/desktop" target="_blank"
-                       style="text-decoration: none; font-size: 20px">GitHub Desktop</a>
-                </li>
-                <li style="height: 40px">
-                    <a href="https://www.jetbrains.com/help/idea/using-git-integration.html" target="_blank"
-                       style="text-decoration: none; font-size: 20px">Intellij
-                        Git & GitHub</a>
-                </li>
-                <li style="height: 40px">
-                    <a href="https://code.visualstudio.com/docs/sourcecontrol/overview" target="_blank"
-                       style="text-decoration: none; font-size: 20px">VS code Git &
-                        GitHub</a>
+                    <a href="https://docs.google.com/presentation/d/1G_KxrB_YdlW85rbKobMvb22y5krzp-vo/edit#slide=id.p4"
+                       target="_blank">簡報連結</a>
                 </li>
             </ul>
         </nav>
