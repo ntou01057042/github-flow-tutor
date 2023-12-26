@@ -24,7 +24,7 @@ let resetButton;
 let cloneLocalAButton;
 let cloneLocalBButton;
 
-let currentLocal;
+let currentLocal = 'A';
 
 let commandList;
 let commandInput;
@@ -96,11 +96,11 @@ window.addEventListener('load', () => {
     commandInput.addEventListener('keypress', async (e) => {
         if (e.key === 'Enter') {
             const input = e.target.value;
-            if (currentLocal === 'A') {
-                recordA.innerHTML += `-${input}<br>`;
-            } else if (currentLocal === 'B') {
-                recordB.innerHTML += `-${input}<br>`;
-            }
+            // if (currentLocal === 'A') {
+            //     recordA.innerHTML += `- ${input}<br>`;
+            // } else if (currentLocal === 'B') {
+            //     recordB.innerHTML += `- ${input}<br>`;
+            // }
             if ((currentLocal === 'A' && document.getElementById('local-a-diagram').innerHTML === '') ||
                 (currentLocal === 'B' && document.getElementById('local-b-diagram').innerHTML === '')) {
                 suggestion.innerHTML = '請先點選畫面右下方的按鈕來將GitHub儲存庫clone到本地端。';
@@ -113,10 +113,12 @@ window.addEventListener('load', () => {
                     await pushLocalA();
                     suggestion.innerHTML = '你已將本地端的內容同步到GitHub上。';
                     pushInLocalA = false;
+                    recordA.innerHTML += `- ${input}<br>`;
                 } else if (currentLocal === 'B') {
                     await pushLocalB();
                     suggestion.innerHTML = '你已將本地端的內容同步到GitHub上。';
                     pushInLocalB = false;
+                    recordB.innerHTML += `- ${input}<br>`;
                 }
             } else if (input === 'git branch') {
                 if (currentLocal === 'A') {
@@ -125,6 +127,7 @@ window.addEventListener('load', () => {
                         suggestion.innerHTML = '你可以在這個新分支內提交commit，新內容將只存在於這個分支內。';
                         enableLocalABranch = false;   // should not create new branch from a branch
                         enableLocalACommit = true;
+                        recordA.innerHTML += `- ${input}<br>`;
                     } else {
                         if (currentBranch.localA.dataset.branch !== 'main') {
                             suggestion.innerHTML = '你不應該直接在主分支以外的分支建立新的分支，請先切換到主分支。（提示：git checkout）';
@@ -136,6 +139,7 @@ window.addEventListener('load', () => {
                         suggestion.innerHTML = '你可以在這個新分支內提交commit，新內容將只存在於這個分支內。';
                         enableLocalBBranch = false;   // should not create new branch from a branch
                         enableLocalBCommit = true;
+                        recordB.innerHTML += `- ${input}<br>`;
                     } else {
                         if (currentBranch.localB.dataset.branch !== 'main') {
                             suggestion.innerHTML = '你不應該直接在主分支以外的分支建立新的分支，請先切換到主分支。（提示：git checkout）';
@@ -147,6 +151,7 @@ window.addEventListener('load', () => {
                     if (enableLocalACommit) {
                         await commitLocalA();
                         suggestion.innerHTML = '你可以持續在這個分支下提交commit，並隨時同步到GitHub上。（提示：git push）';
+                        recordA.innerHTML += `- ${input}<br>`;
                     } else {
                         if (currentBranch.localA.dataset.branch === 'main') {
                             suggestion.innerHTML = '你不應該直接在主分支提交commit，請先建立一個分支。（提示：git branch）';
@@ -156,6 +161,7 @@ window.addEventListener('load', () => {
                     if (enableLocalBCommit) {
                         await commitLocalB();
                         suggestion.innerHTML = '你可以持續在這個分支下提交commit，並隨時同步到GitHub上。（提示：git push）';
+                        recordB.innerHTML += `- ${input}<br>`;
                     } else {
                         if (currentBranch.localB.dataset.branch === 'main') {
                             suggestion.innerHTML = '你不應該直接在主分支提交commit，請先建立一個分支。（提示：git branch）';
@@ -178,6 +184,7 @@ window.addEventListener('load', () => {
                                 enableLocalACommit = false;   // should not commit in main
                                 suggestion.innerHTML = '你已切換到主分支，你可以建立新的分支或是將完成的分支合併進來。（提示：git merge）';
                             }
+                            recordA.innerHTML += `- ${input}<br>`;
                         } else {
                             suggestion.innerHTML = '這個分支已合併到主分支，請切換到其他分支或是建立新分支。';
                         }
@@ -191,6 +198,7 @@ window.addEventListener('load', () => {
                                 enableLocalBCommit = false;   // should not commit in main
                                 suggestion.innerHTML = '你已切換到主分支，你可以建立新的分支或是將完成的分支合併進來。（提示：git merge）';
                             }
+                            recordB.innerHTML += `- ${input}<br>`;
                         } else {
                             suggestion.innerHTML = '這個分支已合併到主分支，請切換到其他分支或是建立新分支。';
                         }
@@ -202,21 +210,31 @@ window.addEventListener('load', () => {
                 } else {
                     const array = input.split(' ');
                     const branch = array[array.length - 1];
-                    if (window.confirm(`確定要合併${branch}分支進來嗎？`) && branch !== 'main') {
-                        if (currentLocal === 'A') {
+                    if (window.confirm(`確定要合併${branch}分支進來嗎？`)) {
+                        if ((currentLocal === 'A') && (branch !== currentBranch.localA.dataset.branch)) {
                             await mergeLocalA(branch);   // no exception handling
-                            suggestion.innerHTML = `你已成功將${branch}分支的內容合併到主分支！現在請將此變更同步到GitHub上。（提示：git push）`;
+                            if (currentBranch.localA.dataset.branch === 'main') {
+                                suggestion.innerHTML = `你已成功將${branch}分支的內容合併到主分支！現在請將此變更同步到GitHub上。（提示：git push）`;
+                                pushInLocalA = true;
+                            } else {
+                                suggestion.innerHTML = '你已成功將主分支的內容合併到此分支。';
+                            }
                             if (document.getElementById('local-b-diagram').innerHTML !== '') {
                                 pullInLocalB = true;
                             }
-                            pushInLocalA = true;
-                        } else if (currentLocal === 'B') {
+                            recordA.innerHTML += `- ${input}<br>`;
+                        } else if ((currentLocal === 'B') && (branch !== currentBranch.localB.dataset.branch)) {
                             await mergeLocalB(branch);   // no exception handling
-                            suggestion.innerHTML = `你已成功將${branch}分支的內容合併到主分支！現在請將此變更同步到GitHub上。（提示：git push）`;
+                            if (currentBranch.localB.dataset.branch === 'main') {
+                                suggestion.innerHTML = `你已成功將${branch}分支的內容合併到主分支！現在請將此變更同步到GitHub上。（提示：git push）`;
+                                pushInLocalB = true;
+                            } else {
+                                suggestion.innerHTML = '你已成功將主分支的內容合併到此分支。';
+                            }
                             if (document.getElementById('local-a-diagram').innerHTML !== '') {
                                 pullInLocalA = true;
                             }
-                            pushInLocalB = true;
+                            recordB.innerHTML += `- ${input}<br>`;
                         }
                     }
                 }
@@ -224,9 +242,11 @@ window.addEventListener('load', () => {
                 if (currentLocal === 'A') {
                     await pullLocalA();
                     pullInLocalA = false;
+                    recordA.innerHTML += `- ${input}<br>`;
                 } else if (currentLocal === 'B') {
                     await pullLocalB();
                     pullInLocalB = false;
+                    recordB.innerHTML += `- ${input}<br>`;
                 }
             } else {
                 suggestion.innerHTML = '輸入的指令無效。';
