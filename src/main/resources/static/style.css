@@ -55,14 +55,15 @@ body {
     overflow: auto;
 }
 
-#record {
+#record-A, #record-B {
     border-radius: 20px;
     margin-top: 10px;
     background-color: hsla(360, 0%, 100%, 0.5);
     height: 55vh;
-    display: block;
+    width: 100%;
     overflow: auto;
     padding: 10px;
+    display: inline-block;
 }
 
 #command-input {
@@ -108,7 +109,7 @@ body {
 
 #origin-diagram {
     height: 30vh;
-    /*overflow: scroll;*/
+    overflow: auto;
 }
 
 #local-a-diagram, #local-b-diagram {

@@ -1,21 +1,21 @@
-import { reset } from "./diagrams.js";
-import { cloneLocalA } from "./diagrams.js";
-import { cloneLocalB } from "./diagrams.js";
-import { branchLocalA } from "./diagrams.js";
-import { branchLocalB } from "./diagrams.js";
-import { commitLocalA } from "./diagrams.js";
-import { commitLocalB } from "./diagrams.js";
-import { pushLocalA } from "./diagrams.js";
-import { pushLocalB } from "./diagrams.js";
-import { checkoutLocalA } from "./diagrams.js";
-import { checkoutLocalB } from "./diagrams.js";
-import { mergeLocalA } from "./diagrams.js";
-import { mergeLocalB } from "./diagrams.js";
-import { pullLocalA } from "./diagrams.js";
-import { pullLocalB } from "./diagrams.js";
+import {reset} from "./diagrams.js";
+import {cloneLocalA} from "./diagrams.js";
+import {cloneLocalB} from "./diagrams.js";
+import {branchLocalA} from "./diagrams.js";
+import {branchLocalB} from "./diagrams.js";
+import {commitLocalA} from "./diagrams.js";
+import {commitLocalB} from "./diagrams.js";
+import {pushLocalA} from "./diagrams.js";
+import {pushLocalB} from "./diagrams.js";
+import {checkoutLocalA} from "./diagrams.js";
+import {checkoutLocalB} from "./diagrams.js";
+import {mergeLocalA} from "./diagrams.js";
+import {mergeLocalB} from "./diagrams.js";
+import {pullLocalA} from "./diagrams.js";
+import {pullLocalB} from "./diagrams.js";
 
-import { currentBranch } from "./diagrams.js";
-import { branches } from "./diagrams.js";
+import {currentBranch} from "./diagrams.js";
+import {branches} from "./diagrams.js";
 
 let suggestion;
 
@@ -46,6 +46,9 @@ let pullInLocalB = false;
 let pushInLocalA = false;
 let pushInLocalB = false;
 
+let recordA;
+let recordB;
+
 window.addEventListener('load', () => {
     suggestion = document.getElementById('suggestion');
 
@@ -64,7 +67,15 @@ window.addEventListener('load', () => {
     localB = document.getElementById('local-b-div');
     localB.style.display = 'none';
 
+    recordA = document.getElementById('record-A');
+    recordB = document.getElementById('record-B');
+    recordB.style.display = 'none';
+
     resetButton.addEventListener('click', reset);
+    resetButton.addEventListener('click', ()=>{
+        recordA = '';
+        recordB = '';
+    })
 
     cloneLocalAButton.addEventListener('click', async (e) => {
         e.target.style.display = 'none';
@@ -85,6 +96,11 @@ window.addEventListener('load', () => {
     commandInput.addEventListener('keypress', async (e) => {
         if (e.key === 'Enter') {
             const input = e.target.value;
+            if (currentLocal === 'A') {
+                recordA.innerHTML += `-${input}<br>`;
+            } else if (currentLocal === 'B') {
+                recordB.innerHTML += `-${input}<br>`;
+            }
             if ((currentLocal === 'A' && document.getElementById('local-a-diagram').innerHTML === '') ||
                 (currentLocal === 'B' && document.getElementById('local-b-diagram').innerHTML === '')) {
                 suggestion.innerHTML = '請先點選畫面右下方的按鈕來將GitHub儲存庫clone到本地端。';
@@ -221,7 +237,9 @@ window.addEventListener('load', () => {
 
     switchToBBtn.addEventListener('click', () => {
         localA.style.display = 'none';
-        localB.style.display = 'unset';
+        localB.style.display = 'inline-block';
+        recordA.style.display = 'none';
+        recordB.style.display = 'inline-block';
         currentLocal = 'B';
         if (document.getElementById('local-b-diagram').innerHTML === '') {
             suggestion.innerHTML = '請點選畫面右下方的按鈕來將GitHub儲存庫clone到本地端（B）。';
@@ -235,7 +253,9 @@ window.addEventListener('load', () => {
 
     switchToABtn.addEventListener('click', () => {
         localB.style.display = 'none';
-        localA.style.display = 'unset';
+        localA.style.display = 'inline-block';
+        recordB.style.display = 'none';
+        recordA.style.display = 'inline-block';
         currentLocal = 'A';
         if (document.getElementById('local-a-diagram').innerHTML === '') {
             suggestion.innerHTML = '請點選畫面右下方的按鈕來將GitHub儲存庫clone到本地端（A）。';
